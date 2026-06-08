@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anshuman Sinha — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">AS</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="sun">☀</span>
+      <span class="moon">☽</span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg-text">AIML</div>
+    <div class="hero-content">
+      <p class="hero-label">👋 Hello, I'm</p>
+      <h1 class="hero-name">Anshuman<br><span>Sinha</span></h1>
+      <p class="hero-tagline">AI/ML Engineer in the Making · DSA Enthusiast · Building Tomorrow's Intelligence Today</p>
+      <div class="hero-sub">B.Tech CSE (AI&ML) · Galgotias College of Engineering & Technology</div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-outline">Contact Me</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="avatar-ring">
+        <div class="avatar-inner">
+          <span>A</span>
+        </div>
+      </div>
+      <div class="floating-chip chip1">Python</div>
+      <div class="floating-chip chip2">DSA</div>
+      <div class="floating-chip chip3">AI/ML</div>
+      <div class="floating-chip chip4">Flask</div>
+    </div>
+    <div class="scroll-hint">scroll down ↓</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-label">01 — About</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Crafting intelligence,<br><em>one algorithm at a time.</em></h2>
+        <p>I'm a 3rd-year B.Tech CSE student specialising in Artificial Intelligence & Machine Learning at Galgotias College of Engineering & Technology. My journey is driven by a deep curiosity for how machines learn and solve complex problems.</p>
+        <p>Currently sharpening my DSA skills and diving deep into Python's AI ecosystem — from data manipulation with NumPy & Pandas to building intelligent models. My goal: land a meaningful AI/ML internship and build real-world impact.</p>
+        <div class="about-stats">
+          <div class="stat"><span>3rd</span><p>Year B.Tech</p></div>
+          <div class="stat"><span>AI/ML</span><p>Specialisation</p></div>
+          <div class="stat"><span>6mo</span><p>To Internship</p></div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="card-inner">
+          <div class="card-row"><span class="card-key">Degree</span><span>B.Tech CSE (AIML)</span></div>
+          <div class="card-row"><span class="card-key">College</span><span>Galgotias CET</span></div>
+          <div class="card-row"><span class="card-key">Year</span><span>3rd Year</span></div>
+          <div class="card-row"><span class="card-key">Focus</span><span>DSA + AI Dev</span></div>
+          <div class="card-row"><span class="card-key">Location</span><span>India</span></div>
+          <div class="card-row"><span class="card-key">Status</span><span class="status-badge">Open to Internships ✦</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <div class="section-label">02 — Skills</div>
+    <h2>What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <h3>Languages</h3>
+        <div class="skill-tags">
+          <span>Python</span><span>C++</span><span>HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🧠</div>
+        <h3>AI / ML</h3>
+        <div class="skill-tags">
+          <span>NumPy</span><span>Pandas</span><span>Scikit-learn</span><span>Matplotlib</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <h3>Web Dev</h3>
+        <div class="skill-tags">
+          <span>Flask</span><span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔧</div>
+        <h3>Tools</h3>
+        <div class="skill-tags">
+          <span>Git</span><span>GitHub</span><span>VS Code</span><span>LeetCode</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📐</div>
+        <h3>DSA</h3>
+        <div class="skill-tags">
+          <span>Arrays</span><span>Strings</span><span>Hashing</span><span>Recursion</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🚀</div>
+        <h3>Currently Learning</h3>
+        <div class="skill-tags">
+          <span>TensorFlow</span><span>Deep Learning</span><span>LLMs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="section-label">03 — Projects</div>
+    <h2>Things I've built</h2>
+    <div class="projects-grid">
+      <div class="project-card featured">
+        <div class="project-num">01</div>
+        <div class="project-body">
+          <h3>Portfolio Website</h3>
+          <p>This very website — built with Flask & Python from scratch. Features dark/light theme toggle, smooth animations, and responsive design.</p>
+          <div class="project-stack"><span>Flask</span><span>Python</span><span>CSS3</span><span>JS</span></div>
+          <div class="project-links">
+            <a href="https://github.com/AnshumanSinha12" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-body">
+          <h3>Coming Soon</h3>
+          <p>Currently working on an AI/ML project. Stay tuned — this space will be filled with something awesome!</p>
+          <div class="project-stack"><span>Python</span><span>ML</span></div>
+          <div class="project-links">
+            <a href="https://github.com/AnshumanSinha12" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <div class="project-body">
+          <h3>Coming Soon</h3>
+          <p>DSA + AI project in progress. Building every day to make this slot worth reading!</p>
+          <div class="project-stack"><span>DSA</span><span>Python</span></div>
+          <div class="project-links">
+            <a href="https://github.com/AnshumanSinha12" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-label">04 — Contact</div>
+    <div class="contact-inner">
+      <h2>Let's connect &<br><em>build together.</em></h2>
+      <p>I'm actively looking for internship opportunities in AI/ML and Software Development. If you have a project, opportunity, or just want to chat — my inbox is always open.</p>
+      <a href="mailto:anshumansinha1209@gmail.com" class="contact-email">anshumansinha1209@gmail.com ↗</a>
+      <div class="social-links">
+        <a href="https://github.com/AnshumanSinha12" target="_blank" class="social-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/anshuman-sinha-45ba89319" target="_blank" class="social-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:anshumansinha1209@gmail.com" class="social-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          Gmail
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed & Built by <strong>Anshuman Sinha</strong> · 2024</p>
+    <!-- <p class="footer-sub">B.Tech CSE (AI/ML) · Galgotias CET</p> -->
+
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
