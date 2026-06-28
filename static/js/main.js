@@ -1,66 +1,87 @@
 // ===== THEME TOGGLE =====
-const toggle = document.getElementById('themeToggle');
+const themeToggle = document.getElementById('themeToggle');
 const root = document.documentElement;
 
-const saved = localStorage.getItem('theme') || 'light';
-root.setAttribute('data-theme', saved);
+const savedTheme = localStorage.getItem('theme') || 'light';
+root.setAttribute('data-theme', savedTheme);
+themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
-toggle.addEventListener('click', () => {
+themeToggle.addEventListener('click', () => {
   const current = root.getAttribute('data-theme');
   const next = current === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
-});
-
-// ===== CUSTOM CURSOR =====
-const cursor = document.querySelector('.cursor');
-const follower = document.querySelector('.cursor-follower');
-
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-  setTimeout(() => {
-    follower.style.left = e.clientX + 'px';
-    follower.style.top = e.clientY + 'px';
-  }, 80);
-});
-
-document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.style.transform = 'translate(-50%, -50%) scale(2)';
-    follower.style.transform = 'translate(-50%, -50%) scale(1.5)';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-    follower.style.transform = 'translate(-50%, -50%) scale(1)';
-  });
+  themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
 });
 
 // ===== SCROLL REVEAL =====
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+      entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.15 });
 
-document.querySelectorAll('.skill-card, .project-card, .about-card, .stat').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+document.querySelectorAll(
+  '.skill-category, .project-card, .number-card, ' +
+  '.about-text, .contact-form-wrap, .contact-info, .contact-item'
+).forEach(el => {
+  el.classList.add('reveal');
   observer.observe(el);
 });
 
-// ===== ACTIVE NAV =====
+// ===== ACTIVE NAV LINK =====
 const sections = document.querySelectorAll('section[id]');
+
 window.addEventListener('scroll', () => {
   let current = '';
-  sections.forEach(sec => {
-    if (window.scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id');
+  sections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - 150) {
+      current = section.getAttribute('id');
+    }
   });
   document.querySelectorAll('.nav-links a').forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+    a.style.color = '';
+    if (a.getAttribute('href') === '#' + current) {
+      a.style.color = 'var(--accent)';
+    }
+  });
+});
+
+// ===== CONTACT FORM =====
+function sendMail() {
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (!name || !email || !message) {
+    alert('Please fill in all fields before sending!');
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Please enter a valid email address!');
+    return;
+  }
+
+  const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+  const body = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+  );
+  window.open(
+    `mailto:anshumansinha1209@gmail.com?subject=${subject}&body=${body}`
+  );
+}
+
+// ===== SMOOTH NAV SCROLL =====
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 });
