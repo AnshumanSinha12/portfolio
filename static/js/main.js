@@ -74,34 +74,70 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 // ===== LEETCODE STATS =====
-async function fetchLeetCodeStats() {
-  try {
-    const res = await fetch(
-      'https://leetcode-stats-api.herokuapp.com/Anshuman_Sinha_'
-    );
-    const data = await res.json();
-    if (data.status === 'success') {
-      document.getElementById('lc-total').textContent = data.totalSolved;
-      document.getElementById('lc-easy').textContent = data.easySolved;
-      document.getElementById('lc-medium').textContent = data.mediumSolved;
-      document.getElementById('lc-hard').textContent = data.hardSolved;
-      document.getElementById('lc-rank').textContent =
-        'Rank: ' + data.ranking.toLocaleString();
+const LC_USERNAME = 'Anshuman_Sinha_';
 
-      const easyPct  = (data.easySolved / data.totalEasy) * 100;
-      const medPct   = (data.mediumSolved / data.totalMedium) * 100;
-      const hardPct  = (data.hardSolved / data.totalHard) * 100;
+// Try multiple free APIs in order, since free APIs can go down
+const LC_API_URLS = [
+  `https://leetcode-stats.tashif.codes/${LC_USERNAME}`,
+  `https://leetcode-stats-api.herokuapp.com/${LC_USERNAME}`,
+  `https://alfa-leetcode-api.onrender.com/${LC_USERNAME}/solved`
+];
 
-      setTimeout(() => {
-        document.getElementById('bar-easy').style.width   = easyPct + '%';
-        document.getElementById('bar-medium').style.width = medPct  + '%';
-        document.getElementById('bar-hard').style.width   = hardPct + '%';
-      }, 500);
-    }
-  } catch (err) {
-    document.getElementById('lc-total').textContent = 'N/A';
-    document.getElementById('lc-rank').textContent  = 'Visit profile for stats';
+function updateLeetCodeUI(data) {
+  document.getElementById('lc-total').textContent = data.totalSolved ?? data.solvedProblem ?? 0;
+  document.getElementById('lc-easy').textContent = data.easySolved ?? data.easySolved ?? 0;
+  document.getElementById('lc-medium').textContent = data.mediumSolved ?? 0;
+  document.getElementById('lc-hard').textContent = data.hardSolved ?? 0;
+
+  if (data.ranking) {
+    document.getElementById('lc-rank').textContent = 'Rank: ' + data.ranking.toLocaleString();
+  } else {
+    document.getElementById('lc-rank').textContent = 'Rank: view on profile';
   }
+
+  const totalEasy = data.totalEasy || 1;
+  const totalMedium = data.totalMedium || 1;
+  const totalHard = data.totalHard || 1;
+
+  const easyPct = ((data.easySolved || 0) / totalEasy) * 100;
+  const medPct  = ((data.mediumSolved || 0) / totalMedium) * 100;
+  const hardPct = ((data.hardSolved || 0) / totalHard) * 100;
+
+  setTimeout(() => {
+    document.getElementById('bar-easy').style.width   = Math.min(easyPct, 100) + '%';
+    document.getElementById('bar-medium').style.width = Math.min(medPct, 100) + '%';
+    document.getElementById('bar-hard').style.width   = Math.min(hardPct, 100) + '%';
+  }, 500);
+}
+
+function showLeetCodeFallback() {
+  // Free public APIs can go down — show a friendly fallback instead of "N/A"
+  document.getElementById('lc-total').textContent = '—';
+  document.getElementById('lc-easy').textContent = '—';
+  document.getElementById('lc-medium').textContent = '—';
+  document.getElementById('lc-hard').textContent = '—';
+  document.getElementById('lc-rank').textContent = 'Live stats unavailable — view profile below';
+}
+
+async function fetchLeetCodeStats() {
+  for (const url of LC_API_URLS) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue; // try next API
+      const data = await res.json();
+
+      // Different APIs use slightly different success flags/fields
+      if (data.status === 'success' || data.totalSolved !== undefined || data.solvedProblem !== undefined) {
+        updateLeetCodeUI(data);
+        return; // success — stop trying other APIs
+      }
+    } catch (err) {
+      // this API failed or is blocked — silently try the next one
+      continue;
+    }
+  }
+  // All APIs failed
+  showLeetCodeFallback();
 }
 
 fetchLeetCodeStats();
